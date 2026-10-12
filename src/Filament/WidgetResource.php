@@ -7,7 +7,6 @@ namespace Inupress\Widgets\Filament;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -17,6 +16,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Inupress\Core\Support\ContentEditor;
 use Inupress\Widgets\Filament\WidgetResource\Pages\CreateWidget;
 use Inupress\Widgets\Filament\WidgetResource\Pages\EditWidget;
 use Inupress\Widgets\Filament\WidgetResource\Pages\ListWidgets;
@@ -42,7 +42,7 @@ final class WidgetResource extends Resource
             TextInput::make('title')
                 ->maxLength(255)
                 ->helperText('Optional. Shown as the heading of the block.'),
-            RichEditor::make('body')
+            ContentEditor::field('body', ContentEditor::SOURCE_WIDGETS)
                 ->helperText('The content of the block. HTML is allowed, as in the WordPress text widget.'),
             Toggle::make('is_active')
                 ->label('Active')
